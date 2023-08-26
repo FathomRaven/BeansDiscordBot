@@ -20,6 +20,13 @@ intents.message_content = True
 
 bot = commands.Bot(command_prefix=os.getenv("PREFIX"), description=description, intents=intents)
 
+@bot.check
+async def check(ctx: commands.Context):
+    if "@here" in ctx.message.content or "@everyone" in ctx.message.content:
+        await ctx.send("Nice try")
+        return False
+    return True
+
 @bot.event
 async def on_ready():
     await bot.add_cog(Misc(bot))
