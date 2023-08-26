@@ -18,7 +18,7 @@ A bot thats occasionally useful, and (even more rarely), funny
 intents = discord.Intents.default()
 intents.message_content = True
 
-bot = commands.Bot(command_prefix='z', description=description, intents=intents)
+bot = commands.Bot(command_prefix=os.getenv("PREFIX"), description=description, intents=intents)
 
 @bot.event
 async def on_ready():
