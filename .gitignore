@@ -1,0 +1,6 @@
+# Dotenv file for discord toke
+.env
+
+# Some cache files
+__pycache__
+cogs/__pycache__
