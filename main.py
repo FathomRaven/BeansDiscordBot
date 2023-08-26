@@ -9,10 +9,11 @@ from cogs.misc_cog import Misc
 
 dotenv_vault.load_dotenv()
 
-description = '''An example bot to showcase the discord.ext.commands extension
-module.
+description = '''
+Beans
 
-There are a number of utility commands being showcased here.'''
+A bot thats occasionally useful, and (even more rarely), funny
+'''
 
 intents = discord.Intents.default()
 intents.message_content = True
