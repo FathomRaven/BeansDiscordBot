@@ -6,6 +6,7 @@ import dotenv_vault
 import os
 
 from cogs.misc_cog import Misc
+from cogs.fun_cog import Fun
 
 dotenv_vault.load_dotenv()
 
@@ -30,6 +31,7 @@ async def check(ctx: commands.Context):
 @bot.event
 async def on_ready():
     await bot.add_cog(Misc(bot))
+    await bot.add_cog(Fun(bot))
     print(f'Logged in as {bot.user} (ID: {bot.user.id})')
     print('------')
 
