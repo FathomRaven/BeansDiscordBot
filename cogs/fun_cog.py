@@ -2,6 +2,8 @@ import discord
 import random
 from discord.ext import commands
 
+from utility.get_member import get_member
+
 class Fun(commands.Cog):
 	"""Funny joke commands"""
 	def __init__(self, bot):
@@ -11,16 +13,21 @@ class Fun(commands.Cog):
 	async def gay(self, ctx):
 		percentage = random.randrange(1, 101)
 		status_bar = ""
+		member = get_member(ctx)
+
 		for i in range(round(percentage/10)):
 			status_bar += "🟪"
 		for i in range(10 - round(percentage/10)):
 			status_bar += "⬛"
 		
 		embed = discord.Embed(
-			title="Gay status of: " + ctx.message.author.display_name,
+			title="Gay status of: " + member.display_name,
 			description= str(percentage) + "%" + " gay" + "\n" + status_bar,
 			color=discord.Color(0x5e5e5e)
 		)
+
+		if(member.avatar):
+			embed.set_thumbnail(url=member.avatar.url)
 
 		if(percentage >= 90):
 			embed.description += "\nWow, thats a really high score!"
