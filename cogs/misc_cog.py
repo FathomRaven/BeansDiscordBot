@@ -1,4 +1,8 @@
+import random
+
+import discord
 from discord.ext import commands
+from utility.get_member import get_member
 
 class Misc(commands.Cog):
 	"""Some little random commands"""
@@ -14,9 +18,40 @@ class Misc(commands.Cog):
 
 		await ctx.message.delete()
 
+		if(random.randrange(1, 101) > 90):
+			embed = discord.Embed(
+				title=ctx.message.author.display_name + " tried to say:",
+				description=message_content
+			)
+
+			await ctx.send(embed=embed)
+			return
+
 		await ctx.send(message_content)
 	
 	@commands.command()
 	async def ping(self, ctx):
 		await ctx.send("Pong!")
 		await ctx.message.add_reaction('🏓')
+
+	@commands.command()
+	async def avatar(self, ctx):
+		member = get_member(ctx)
+
+		if(not member.avatar):
+			embed = discord.Embed(
+				title="Error!",
+				description="User has no avatar!"
+			)
+
+			await ctx.send(embed=embed)
+			return
+
+		embed = discord.Embed(
+			title=member.display_name + "'s avatar",
+			color=member.top_role.color
+		)
+
+		embed.set_image(url=member.avatar.url)
+
+		await ctx.send(embed=embed)
