@@ -7,6 +7,7 @@ import os
 
 from cogs.misc_cog import Misc
 from cogs.fun_cog import Fun
+from help_command import Help
 
 dotenv_vault.load_dotenv()
 
@@ -19,7 +20,7 @@ A bot thats occasionally useful, and (even more rarely), funny
 intents = discord.Intents.default()
 intents.message_content = True
 
-bot = commands.Bot(command_prefix=os.getenv("PREFIX"), description=description, intents=intents)
+bot = commands.Bot(command_prefix=os.getenv("PREFIX"), description=description, intents=intents, help_command=Help())
 
 @bot.check
 async def check(ctx: commands.Context):
