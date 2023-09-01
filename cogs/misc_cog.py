@@ -31,11 +31,13 @@ class Misc(commands.Cog):
 	
 	@commands.command()
 	async def ping(self, ctx):
+		"""Ping the bot to test if it's online"""
 		await ctx.send("Pong!")
 		await ctx.message.add_reaction('🏓')
 
 	@commands.command()
 	async def avatar(self, ctx):
+		"""Get the avatar of yourself or others!"""
 		member = get_member(ctx)
 
 		if(not member.avatar):
