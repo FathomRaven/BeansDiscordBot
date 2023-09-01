@@ -1,4 +1,5 @@
 import random
+import requests
 
 import discord
 from discord.ext import commands
@@ -59,5 +60,23 @@ class Misc(commands.Cog):
 		)
 
 		embed.set_image(url=member.avatar.url)
+
+		await ctx.send(embed=embed)
+
+	@commands.command()
+	async def define(self, ctx, arg):
+		"""Define a word!"""
+		response = requests.get("https://api.dictionaryapi.dev/api/v2/entries/en/" + str(arg))
+		if(response.status_code != 200):
+			await ctx.send("Error in getting word! Are you sure it exists?")
+			return
+		
+		data = response.json()[0]
+		embed = discord.Embed(
+			title=f"{data['word'].capitalize()} definitions",
+			description="",
+		).set_footer(text=f"Source: {data['sourceUrls'][0]}")
+		for definition in data["meanings"][0]["definitions"]:
+			embed.description += f"{definition['definition'].capitalize()}\n\n"
 
 		await ctx.send(embed=embed)
