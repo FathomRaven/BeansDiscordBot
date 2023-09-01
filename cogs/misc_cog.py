@@ -27,6 +27,10 @@ class Misc(commands.Cog):
 			await ctx.send(embed=embed)
 			return
 
+		if not message_content:
+			await ctx.send("Cannot send an empty message!")
+			return
+
 		await ctx.send(message_content)
 	
 	@commands.command()
