@@ -11,17 +11,19 @@ class Fun(commands.Cog):
 	
 	@commands.command()
 	async def gay(self, ctx):
+		"""See just how gay you and your friends are"""
 		percentage = random.randrange(1, 101)
 		status_bar = ""
 		member = get_member(ctx)
 
+		# Makes a status bar (misleading name)
 		for i in range(round(percentage/10)):
 			status_bar += "🟪"
 		for i in range(10 - round(percentage/10)):
 			status_bar += "⬛"
 		
 		embed = discord.Embed(
-			title="Gay status of: " + member.display_name,
+			title="Gay status of: " + member.display_name, # Display name includes nicknames
 			description= str(percentage) + "%" + " gay" + "\n" + status_bar,
 			color=discord.Color(0x5e5e5e)
 		)
