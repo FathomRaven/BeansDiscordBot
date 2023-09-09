@@ -80,3 +80,16 @@ class Misc(commands.Cog):
 			embed.description += f"{definition['definition'].capitalize()}\n\n"
 
 		await ctx.send(embed=embed)
+	
+	@commands.command()
+	async def github(self, ctx):
+		"""Get the GitHub link for the bots repository!"""
+		embed = discord.Embed(
+			title="Source code",
+			description="""**Have an issue, suggestion, or want to see how the bot works? Check out the GitHub page!**
+
+https://github.com/FathomRaven/BeansDiscordBot
+			"""
+		)
+
+		await ctx.send(embed=embed)
