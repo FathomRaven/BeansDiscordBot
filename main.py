@@ -41,6 +41,8 @@ async def on_ready():
     await bot.add_cog(Fun(bot))
     print(f'Logged in as {bot.user} (ID: {bot.user.id})')
     print('------')
+    game = discord.Game(f"in {len(bot.guilds)} servers | {os.getenv('PREFIX')}help")
+    await bot.change_presence(status=discord.Status.online, activity=game)
 
 # Access the token using env
 bot.run(os.getenv("TOKEN"))
