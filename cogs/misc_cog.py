@@ -4,6 +4,7 @@ import requests
 import discord
 from discord.ext import commands
 from utility.get_member import get_member
+from utility.send_error_message import send_error_message
 
 class Misc(commands.Cog):
 	"""Some little random commands"""
@@ -29,7 +30,7 @@ class Misc(commands.Cog):
 			return
 
 		if not message_content:
-			await ctx.send("Cannot send an empty message!")
+			await send_error_message(ctx, "Cannot send an empty message!")
 			return
 
 		await ctx.send(message_content)
@@ -46,12 +47,7 @@ class Misc(commands.Cog):
 		member = get_member(ctx)
 
 		if(not member.avatar):
-			embed = discord.Embed(
-				title="Error!",
-				description="User has no avatar!"
-			)
-
-			await ctx.send(embed=embed)
+			await send_error_message(ctx, "User has no avatar!")
 			return
 
 		embed = discord.Embed(
@@ -68,7 +64,7 @@ class Misc(commands.Cog):
 		"""Define a word!"""
 		response = requests.get("https://api.dictionaryapi.dev/api/v2/entries/en/" + str(arg))
 		if(response.status_code != 200):
-			await ctx.send("Error in getting word! Are you sure it exists?")
+			await send_error_message(ctx, "Cannot find that word: status code 200")
 			return
 		
 		data = response.json()[0]
