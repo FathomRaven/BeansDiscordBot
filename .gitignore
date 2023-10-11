@@ -1,6 +1,9 @@
 # Dotenv file for discord toke
 .env
 
+# Data JSON file
+data.json
+
 # Some cache files
 __pycache__
 cogs/__pycache__
