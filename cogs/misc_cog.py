@@ -3,9 +3,7 @@ import requests
 
 import discord
 from discord.ext import commands
-from utility.get_member import get_member
-from utility.send_error_message import send_error_message
-from utility.data_storage import *
+from utility import *
 
 class Misc(commands.Cog):
 	"""Some little random commands"""

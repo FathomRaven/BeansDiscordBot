@@ -1,8 +1,8 @@
-import discord
 import random
-from discord.ext import commands
 
-from utility.get_member import get_member
+import discord
+from discord.ext import commands
+from utility import *
 
 class Fun(commands.Cog):
 	"""Funny joke commands"""

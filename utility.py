@@ -1,5 +1,6 @@
 import discord
 import json
+from discord.ext import commands
 
 # Stored in the main folder, not in the utility folder
 file_path = "./data.json"
@@ -36,3 +37,29 @@ async def read_storage(guild: discord.Guild, key: str):
 		return data
 
 	return data[str(guild.id)][key]
+
+def get_member(ctx: commands.context, get_author=True, get_by_mentions=True, get_by_name=True):
+	member = None
+	if(get_author):
+		member = ctx.message.author
+
+	if(get_by_mentions and ctx.message.mentions):
+		member = ctx.message.mentions[0]
+	
+	if(get_by_name):
+		args = ctx.message.content.split(" ")
+		if(len(args) > 1):
+			member_by_name = ctx.guild.get_member_named(args[1])
+			if(member_by_name != None):
+				member = member_by_name
+
+	return member
+
+async def send_error_message(ctx: commands.context, error_message="Encountered an error!"):
+	embed = discord.Embed(
+		title="Error!",
+		color=discord.Color(0xff0000),
+		description=error_message
+	)
+
+	await ctx.send(embed=embed)
