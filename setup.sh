@@ -10,6 +10,15 @@ if [ ! -f .env ]; then
     touch .env
 fi
 
+# Create the virtual enviroment
+python3 -m venv venv
+source venv/bin/activate
+
+# Install dependicies
+pip install discord
+pip install python-dotenv-vault
+pip install requests
+
 # Ask for Discord API token
 read -p "Enter your Discord API token: " token
 update_env "TOKEN" "$token"
@@ -18,4 +27,4 @@ update_env "TOKEN" "$token"
 read -p "Enter your bot prefix: " prefix
 update_env "PREFIX" "$prefix"
 
-echo "Config setup complete"
+echo "Setup complete"
