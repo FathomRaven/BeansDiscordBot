@@ -19,12 +19,14 @@ pip install discord
 pip install python-dotenv-vault
 pip install requests
 
-# Ask for Discord API token
-read -p "Enter your Discord API token: " token
-update_env "TOKEN" "$token"
+if [ ! -f .env ]; then
+    # Ask for Discord API token
+    read -p "Enter your Discord API token: " token
+    update_env "TOKEN" "$token"
 
-# Ask for bot prefix
-read -p "Enter your bot prefix: " prefix
-update_env "PREFIX" "$prefix"
+    # Ask for bot prefix
+    read -p "Enter your bot prefix: " prefix
+    update_env "PREFIX" "$prefix"
+fi
 
 echo "Setup complete"
