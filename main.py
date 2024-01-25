@@ -4,7 +4,7 @@ import discord
 from discord.ext import commands
 
 # Dotenv includes
-import dotenv_vault
+import dotenv
 import os
 
 # All commands and cogs
@@ -12,7 +12,7 @@ from cogs.misc_cog import Misc
 from cogs.fun_cog import Fun
 from help_command import Help
 
-dotenv_vault.load_dotenv()
+dotenv.load_dotenv()
 
 description = '''
 Beans
