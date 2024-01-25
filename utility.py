@@ -18,9 +18,7 @@ async def write_storage(guild: discord.Guild, key :str, value):
 		data = {}
 		return
 
-	data[str(guild.id)] = {
-		key: value
-	}
+	data[str(guild.id)][key] = value
 
 	# Write back to the file
 	with open(file_path, "w") as file:
