@@ -16,7 +16,7 @@ source venv/bin/activate
 
 # Install dependicies
 pip install discord
-pip install python-dotenv-vault
+pip install python-dotenv
 pip install requests
 
 if [ ! -f .env ]; then
